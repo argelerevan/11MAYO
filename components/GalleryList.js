@@ -3,7 +3,7 @@ import { StyleSheet, Text, ScrollView, View } from 'react-native';
 import { database} from '../firebase.js';
 import Gallery from './Gallery';
 import ListSeparator from './ListSeparator';
-import GalleryDetail from './GalleryDetail'
+
 export default class GalleryList extends React.Component {
     constructor(props) {
         super(props);
@@ -34,8 +34,6 @@ export default class GalleryList extends React.Component {
             return (<View  key={i}>
                     <Gallery gallery={g}
                     onClick={this._}>
-                    
-                    
                     </Gallery>
                     <ListSeparator></ListSeparator>
                 </View>)

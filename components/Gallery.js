@@ -3,16 +3,7 @@ import { StyleSheet, Text, View , ImageBackground, TouchableOpacity } from 'reac
 import { storage } from '../firebase.js';
 import { Font } from 'expo';
 import Image from 'react-native-remote-svg'
-
 export default class Gallery extends React.Component {
-
-    // Binding function with this class.
-      callFun = () =>
-      {
-     
-        alert("Image Clicked!!!");
-     
-      }
     constructor(props){
         super(props);
         this.state = {
@@ -27,10 +18,8 @@ export default class Gallery extends React.Component {
         }.bind(this)).catch(function(error) {
             console.debug('Error',error);
         });
-        
     }
     render() {
-        
         if(!this.props.gallery){
             return <View></View>;
         }else{
@@ -38,16 +27,14 @@ export default class Gallery extends React.Component {
             return (
             <View style={styles.container}>
              <View style={styles.centro}>
-
                 <ImageBackground
                 style={styles.image}
-                source={{uri: this.state.imageUri}}
-                >
+                source={{uri: this.state.imageUri}}>
                 <View style={styles.centro}>
                 <Text style={styles.texto}>{gal.Nombre}</Text>
                 <Text style={styles.name_container}> {gal.Galeria}</Text>
                 <Text style={styles.texto2}>hasta el{gal.Cierre}</Text>
-                <TouchableOpacity activeOpacity = { .5 } onPress={ }>
+                <TouchableOpacity activeOpacity = { .5 }>
                 <Image style={{ width: 150, height: 50 }}
       source={ require('../images/info2.svg')} />
                 </TouchableOpacity >

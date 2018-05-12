@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "rnpm": {
-    "assets":[
+    "assets": [
       "./assets/fonts"
     ]
   },
@@ -23,7 +23,6 @@
   "jest": {
     "preset": "jest-expo"
   },
-
   "dependencies": {
     "expo": "^26.0.0",
     "firebase": "^4.12.1",
