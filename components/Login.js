@@ -16,7 +16,7 @@ export default class Login extends React.Component {
       <LottieView style={styles.container}
        ref={animation => {
       this.animation = animation;
-      }} source = { require('../gradient/gradient.json')}>
+      }} source = { require('../gradient/dos.json')}>
       <Image 
                 source={require('../images/indexlogo.svg') } 
                 style={styles.size}></Image>

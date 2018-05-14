@@ -3,6 +3,7 @@ import { StyleSheet, Text, View , ImageBackground, TouchableOpacity } from 'reac
 import { storage } from '../firebase.js';
 import { Font } from 'expo';
 import Image from 'react-native-remote-svg'
+import InfoScreen from './InfoScreen'
 export default class Gallery extends React.Component {
     constructor(props){
         super(props);
@@ -34,7 +35,10 @@ export default class Gallery extends React.Component {
                 <Text style={styles.texto}>{gal.Nombre}</Text>
                 <Text style={styles.name_container}> {gal.Galeria}</Text>
                 <Text style={styles.texto2}>hasta el{gal.Cierre}</Text>
-                <TouchableOpacity activeOpacity = { .5 }>
+                <TouchableOpacity 
+                activeOpacity = { .5 }
+                onPress={this.InfoScreen}
+                >
                 <Image style={{ width: 150, height: 50 }}
       source={ require('../images/info2.svg')} />
                 </TouchableOpacity >
