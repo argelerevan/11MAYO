@@ -2,8 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View , ImageBackground, TouchableOpacity } from 'react-native';
 import { storage } from '../firebase.js';
 import { Font } from 'expo';
-import Image from 'react-native-remote-svg'
-import InfoScreen from './InfoScreen'
+import Image from 'react-native-remote-svg';
+import InfoScreen from './InfoScreen';
+
 export default class Gallery extends React.Component {
     constructor(props){
         super(props);
@@ -20,6 +21,7 @@ export default class Gallery extends React.Component {
             console.debug('Error',error);
         });
     }
+
     render() {
         if(!this.props.gallery){
             return <View></View>;
@@ -29,21 +31,21 @@ export default class Gallery extends React.Component {
             <View style={styles.container}>
              <View style={styles.centro}>
                 <ImageBackground
-                style={styles.image}
-                source={{uri: this.state.imageUri}}>
-                <View style={styles.centro}>
-                <Text style={styles.texto}>{gal.Nombre}</Text>
-                <Text style={styles.name_container}> {gal.Galeria}</Text>
-                <Text style={styles.texto2}>hasta el{gal.Cierre}</Text>
-                <TouchableOpacity 
-                activeOpacity = { .5 }
-                onPress={this.InfoScreen}
-                >
-                <Image style={{ width: 150, height: 50 }}
-      source={ require('../images/info2.svg')} />
-                </TouchableOpacity >
-                </View>
-                </ImageBackground>
+                    style={styles.image}
+                    source={{uri: this.state.imageUri}}>
+                    <View style={styles.centro}>
+                    <Text style={styles.texto}>{gal.Nombre}</Text>
+                    <Text style={styles.name_container}> {gal.Galeria}</Text>
+                    <Text style={styles.texto2}>hasta el {gal.Cierre}</Text>
+                    <TouchableOpacity style={styles.bordered} 
+                        onPress={e => {
+                            this.props.onClickInfo(e,gal);
+                        }}
+                        >
+                        <Text style={styles.info_button}> Mas información</Text>
+                    </TouchableOpacity>
+                    </View>
+                    </ImageBackground>
                 </View>
             </View> 
             );
@@ -53,6 +55,18 @@ export default class Gallery extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    bordered:{
+        borderRadius: 1,
+        padding : 5,
+        borderWidth: 1,
+        borderRadius:10,
+        borderColor: 'white'
+    },
+    info_button:{
+        color:'white',
+        fontSize: 12, 
+        fontFamily:'Avenir'
+    },
   container: {
     flex:1,
     backgroundColor:'rgba(0,0,0,.8)',

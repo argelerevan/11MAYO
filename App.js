@@ -4,7 +4,7 @@ import Expos from './components/Expos';
 import Eventos from './components/Eventos';
 import { YellowBox } from 'react-native';
 import _ from 'lodash';
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator, TabView } from 'react-navigation';
 import Image from 'react-native-remote-svg'
 import InfoScreen from './components/InfoScreen';
 
@@ -16,15 +16,7 @@ console.warn = message => {
   }
 };
 
-const App = TabNavigator ({
-  Login: { screen: Login, 
-      header: null
-    },
-    InfoScreen:{
-        screen: StackNavigator({
-          settings:{screen: InfoScreen}
-        })
-    },
+const TabApp = TabNavigator ({
     Expos: { 
       screen: Expos, 
       navigationOptions:({navigation}) =>({
@@ -58,7 +50,9 @@ const App = TabNavigator ({
   }
   },
   {
-    initialRouteName: 'Login'
+    initialRouteName: 'Expos',
+    tabBarComponent: TabView.TabBarBottom,
+    tabBarPosition: 'bottom'
   });
 /*
 export default class App extends React.Component {
@@ -68,4 +62,4 @@ export default class App extends React.Component {
     );
   }
 }*/
-export default App;
+export default TabApp;
