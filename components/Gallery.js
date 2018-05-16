@@ -37,7 +37,7 @@ export default class Gallery extends React.Component {
                 <Text style={styles.texto2}>hasta el{gal.Cierre}</Text>
                 <TouchableOpacity 
                 activeOpacity = { .5 }
-                onPress={this.InfoScreen}
+                onPress={}
                 >
                 <Image style={{ width: 150, height: 50 }}
       source={ require('../images/info2.svg')} />
