@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View , ImageBackground, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View , ImageBackground, TouchableOpacity, Image } from 'react-native';
 import { storage } from '../firebase.js';
 import { Font } from 'expo';
-import Image from 'react-native-remote-svg';
 import InfoScreen from './InfoScreen';
+import MoreInfo from '../images/info2.png';
 
 export default class Gallery extends React.Component {
     constructor(props){
@@ -37,12 +37,12 @@ export default class Gallery extends React.Component {
                     <Text style={styles.texto}>{gal.Nombre}</Text>
                     <Text style={styles.name_container}> {gal.Galeria}</Text>
                     <Text style={styles.texto2}>hasta el {gal.Cierre}</Text>
-                    <TouchableOpacity style={styles.bordered} 
+                    <TouchableOpacity 
                         onPress={e => {
                             this.props.onClickInfo(e,gal);
-                        }}
-                        >
-                        <Text style={styles.info_button}> + información</Text>
+                        }}>
+                        <Image style={{width: 100, height: 30}}
+                        source={require('../images/info2.png')}/>
                     </TouchableOpacity>
                     </View>
                     </ImageBackground>
