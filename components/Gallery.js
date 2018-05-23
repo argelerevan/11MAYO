@@ -42,7 +42,7 @@ export default class Gallery extends React.Component {
                             this.props.onClickInfo(e,gal);
                         }}
                         >
-                        <Text style={styles.info_button}> Mas información</Text>
+                        <Text style={styles.info_button}> + información</Text>
                     </TouchableOpacity>
                     </View>
                     </ImageBackground>
