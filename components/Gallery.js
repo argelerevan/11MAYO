@@ -51,7 +51,6 @@ export default class Gallery extends React.Component {
             );
         }
     }
-
 }
 
 const styles = StyleSheet.create({

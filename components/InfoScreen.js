@@ -31,23 +31,25 @@ class InfoScreen extends Component{
 <ImageBackground
                     style={styles.image}
                     source={{uri: this.state.imageUri}}>
-           
+            <View>
+                    <Text style={styles.texto}>{gal.Nombre}</Text>
+                    <Text style={styles.name_container}> {gal.Galeria}</Text>
+
+                    </View>
                 <Button 
                     title='Regresar a expos'
                     onPress={() => this.props.back()} 
                     backgroundColor="rgba(0,0,0,0)"
-                    color="rgba(0,122,255,1)"
-                />
-                                
+                    color="rgba(0,122,255,1)"/>
                 </ImageBackground>
                 <ListSeparator></ListSeparator>
             </View>
-            <View style={styles.centro}>
-                    <Text style={styles.texto}>{gal.Nombre}</Text>
-                    <Text style={styles.name_container}> {gal.Galeria}</Text>
+            <View style={styles.centro}>           
                     <Text style={styles.name_container}> {gal.Direccion}</Text>
-                    
+                    <Text style={styles.name_container}> {gal.Horarios} HRS. </Text>
+                    <Text style={styles.name_container}> {gal.Telefono} HRS. </Text>
                     <Text style={styles.texto2}>hasta el {gal.Cierre}</Text>
+                    <Text style={styles.texto}>{gal.Nombre}</Text>
                     <Text style={styles.texto2}>{gal.Descripcion}</Text>
                     </View>
             </View>
