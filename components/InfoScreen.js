@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import {StyleSheet, View, Text, Button, ImageBackground , TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Text, Button, ImageBackground , TouchableOpacity, ScrollView, Linking} from 'react-native';
 import { storage } from '../firebase.js';
 import { navigation } from 'react-navigation';
 import ListSeparator from './ListSeparator';
+import { Ionicons } from '@expo/vector-icons';
+
 
 class InfoScreen extends Component{
  constructor(props){
         super(props);
-        this.state = {
-            imageUri:'./images/logo.png'
-        };
+         this.state = {
+         imageUri:'./images/logo.png'
+       };
         let imageRef = props.gallery.Imagen;
         storage.ref('imagenes/'+imageRef).getDownloadURL().then(function(url) {
             console.log('Imagen URL',url);
@@ -26,38 +28,104 @@ class InfoScreen extends Component{
         }else{
             let gal = this.props.gallery; 
         return(
+            <ScrollView style={styles.ScrollView}>
             <View style={styles.container}>
-            <View style={styles.centro}>
-<ImageBackground
-                    style={styles.image}
-                    source={{uri: this.state.imageUri}}>
-            <View>
-                    <Text style={styles.texto}>{gal.Nombre}</Text>
-                    <Text style={styles.name_container}> {gal.Galeria}</Text>
+                            <ImageBackground
+                                   style={styles.image}
+                                   source={{uri: this.state.imageUri}}>
+                                               <Button 
+                                                   title='<-'
+                                                       onPress={() => this.props.back()}/>
+                                                              <View style={styles.textinside}>
+                                      <Text style={styles.textoimagen2}>{gal.Galeria}</Text>
+
+                                      <View style={styles.logos}>
+                                      <TouchableOpacity onPress={() => Linking.openURL('https://www.google.com.mx/maps.com')}>
+                    <Ionicons name="md-pin" size={28} color="white"/>
+                    </TouchableOpacity>            
+                    <TouchableOpacity onPress={() => Linking.openURL('indexgalerias.com')}>
+<Ionicons name="md-calendar" size={28} color="white"/>
+</TouchableOpacity>
+</View>
+                 </View>
+                </ImageBackground>
+
+                <ListSeparator></ListSeparator>
+                </View>
+
+           <View style={styles.flex2}>
+
+            <View style={styles.datos}>     
+                           <Text style={styles.texto2}>DEL {gal.Apertura} AL {gal.Cierre}</Text>
+                         <Text style={styles.textotel}>Dias: {gal.Dias}. {gal.AtencionDe} A {gal.AtencionA} HRS.</Text>
+                             <Text style={styles.textotel}>{gal.Telefono} │ {gal.Web}  </Text>
+                              </View>
+
+<View style={{width:300, flexDirection: 'row',justifyContent: 'space-around' }}>
+
+<TouchableOpacity onPress={() => Linking.openURL('https://facebook.com')}>
+                    <Ionicons name="logo-facebook" size={27} color="black"/>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => Linking.openURL('https://instagram.com')}>
+                    <Ionicons name="logo-instagram" size={27} color="black"/></TouchableOpacity>
 
                     </View>
-                <Button 
-                    title='Regresar a expos'
-                    onPress={() => this.props.back()} 
-                    backgroundColor="rgba(0,0,0,0)"
-                    color="rgba(0,122,255,1)"/>
-                </ImageBackground>
-                <ListSeparator></ListSeparator>
-            </View>
-            <View style={styles.centro}>           
-                    <Text style={styles.name_container}> {gal.Direccion}</Text>
-                    <Text style={styles.name_container}> {gal.Horarios} HRS. </Text>
-                    <Text style={styles.name_container}> {gal.Telefono} HRS. </Text>
-                    <Text style={styles.texto2}>hasta el {gal.Cierre}</Text>
+                    <View style={{paddingVertical:10, paddingHorizontal:30}}>
                     <Text style={styles.texto}>{gal.Nombre}</Text>
-                    <Text style={styles.texto2}>{gal.Descripcion}</Text>
                     </View>
-            </View>
+                    <View style={styles.centro}>
+                    <Text style={styles.textotel}>{gal.Descripcion}</Text>
+                    </View>
+         </View>
+        </ScrollView>
         );
     }
 }
 }
 const styles = StyleSheet.create({
+    logos:{
+        width: 100 ,
+        height: 100 ,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly'
+ 
+    },
+    textotel:{
+            color:'black',
+            fontSize: 11, 
+            fontFamily:'Avenir'
+    },
+    flex2:{
+flex:3
+    },
+    datos:{
+paddingVertical: 13,
+paddingHorizontal: 30,
+backgroundColor: 'white'
+    },
+    textinside:{
+        paddingVertical: 120, 
+        paddingHorizontal: 22
+    },
+    ScrollView:{
+    },
+    textoabajo:{
+        flex: 1,
+        justifyContent:'center',
+      alignItems: 'center',
+    },
+    textoimagen:
+    {
+        color:'white',
+        fontSize: 17, 
+        fontFamily:'Avenir'
+    },
+    textoimagen2:
+    {
+        color:'white',
+        fontSize: 24, 
+        fontFamily:'Avenir'
+    },
     bordered:{
         borderRadius: 1,
         padding : 5,
@@ -71,31 +139,22 @@ const styles = StyleSheet.create({
         fontFamily:'Avenir'
     },
   container: {
-    flex:1,
+    flex:0,
     backgroundColor:'rgba(0,0,0,.8)',
-    width:undefined,
-    height: undefined,
+    width:220,
+    height:280,
   },
   image:{
-      flex:1,
+      flex:2,
     width:400,
-    height:450,
+    height:200,
     elevation: 1,
-    shadowRadius: 2,
-    shadowOpacity: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-  borderRadius: 2,
-  borderColor: '#ddd',
-  borderBottomWidth: 0,
-
   },
   name_container:{
     color:'white',
     fontWeight:'bold',
     fontFamily:'Avenir-Black',
     fontSize: 14,
-    
   },
   texto:{
     color:'black',
@@ -104,12 +163,14 @@ const styles = StyleSheet.create({
   },
   texto2:{
     color:'black',
-    fontSize: 12, 
-    fontFamily:'Avenir'
+    fontSize: 14, 
+    fontFamily:'Avenir-Black'
   },
   centro:{
-      flex: 1,
+      paddingHorizontal: 30,
+      flex:1,
       justifyContent:'center',
+      width: 300,
     alignItems: 'center',
     backgroundColor: 'white'
   }

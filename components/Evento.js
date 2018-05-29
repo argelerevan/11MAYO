@@ -1,10 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View , ImageBackground, TouchableOpacity, Image } from 'react-native';
 import { storage } from '../firebase.js';
-import Image from 'react-native-remote-svg'
+import { Font } from 'expo';
+import InfoEventos from './InfoEventos';
+import MasInfo from '../images/infogris.png'
 import ListSeparator from './ListSeparator';
-export default class Evento extends React.Component {
 
+export default class Evento extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -21,31 +23,37 @@ export default class Evento extends React.Component {
         });
     }
     render() {
-        
         if(!this.props.evento){
             return <View></View>;
         }else{
-            let even = this.props.evento;
+            let egal = this.props.evento;
             return (
             <View style={styles.container}>
-                <Image
+               <View style={styles.centro}>
+                <ImageBackground
                 style={styles.image}
                 source={{uri: this.state.imageUri}}
                 /> 
-                  <ListSeparator></ListSeparator>
+                 <ListSeparator></ListSeparator>
                 <View style={styles.centro}>
-                <Text style={styles.texto}>{even.Nombre}</Text>
-                <Text style={styles.name_container}>{even.Galeria}</Text>
-                <Text style={styles.texto2}>{even.Cierre}</Text>
-                <Image
-      style={{ width: 150, 
-        height: 40,
-  
-    }}
-      source={ require('../images/gris.svg')}      
-      />
-      
-                </View>
+                <Text style={styles.texto}>{egal.Nombre}</Text>
+                <Text style={styles.name_container}>{egal.Galeria}</Text>
+                <Text style={styles.texto2}>{egal.Cierre}</Text>
+               <View style={styles.boton}>
+                <TouchableOpacity
+             onPress={e => {
+
+                this.props.onClickInfo(e,egal);
+                                                 }}>
+                                                 
+                       <Image style={{width: 165, 
+                       height: 37}}
+                        source={require('../images/infogris.png')}/>
+                    </TouchableOpacity>
+                    </View>
+                    </View>
+        
+            </View>
             </View>
             );
         }
@@ -53,6 +61,9 @@ export default class Evento extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    boton:{
+            
+    },
   container: {
     backgroundColor: '#fff',
     width:400,
