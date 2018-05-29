@@ -76,19 +76,19 @@ const styles = StyleSheet.create({
   name_container:{
     color:'white',
     fontWeight:'bold',
-    fontFamily:'Avenir-Black',
+    //fontFamily:'Avenir',
     fontSize: 14,
     
   },
   texto:{
     color:'white',
     fontSize: 18, 
-    fontFamily:'Avenir'
+    //fontFamily:'Avenir'
   },
   texto2:{
     color:'white',
     fontSize: 12, 
-    fontFamily:'Avenir'
+    //fontFamily:'Avenir'
   },
   centro:{
       flex: 1,

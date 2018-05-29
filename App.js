@@ -2,13 +2,14 @@ import React from 'react';
 import Login from './components/Login';
 import Expos from './components/Expos';
 import Eventos from './components/Eventos';
-import { YellowBox } from 'react-native';
+//import { YellowBox } from 'react-native';
 import _ from 'lodash';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import Image from 'react-native-remote-svg'
 import InfoScreen from './components/InfoScreen';
+import { Font } from 'expo';
 
-YellowBox.ignoreWarnings(['Setting a timer']);
+//YellowBox.ignoreWarnings(['Setting a timer']);
 const _console = _.clone(console);
 console.warn = message => {
   if (message.indexOf('Setting a timer') <= -1) {
@@ -16,7 +17,7 @@ console.warn = message => {
   }
 };
 
-const App = TabNavigator ({
+const TabApp = TabNavigator ({
   Login: { screen: Login, 
       header: null
     },
@@ -53,19 +54,25 @@ const App = TabNavigator ({
     activeBackgroundColor:'#3ee6c1',
     inactiveTintColor:'#666',
     labelStyle:{
-      fontFamily:'Avenir-Black'
+      //fontFamily:'Avenir'
     }
   }
   },
   {
     initialRouteName: 'Login'
   });
-/*
+
 export default class App extends React.Component {
+
+  componentDidMount(){
+    Font.loadAsync({
+      'Avenir-Black': require('./assets/fonts/OpenSans-Bold.ttf'),
+    });
+  }
   render() {
     return (
       <Login></Login>
     );
   }
-}*/
-export default App;
+}
+//export default App;
