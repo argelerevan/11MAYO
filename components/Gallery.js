@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View , ImageBackground, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View , ImageBackground, TouchableOpacity, Image } from 'react-native';
 import { storage } from '../firebase.js';
 import { Font } from 'expo';
-import Image from 'react-native-remote-svg'
-import InfoScreen from './InfoScreen'
+import InfoScreen from './InfoScreen';
+import MoreInfo from '../images/info2.png';
+
 export default class Gallery extends React.Component {
     constructor(props){
         super(props);
@@ -20,39 +21,54 @@ export default class Gallery extends React.Component {
             console.debug('Error',error);
         });
     }
+
     render() {
+
         if(!this.props.gallery){
+        
             return <View></View>;
         }else{
+        
             let gal = this.props.gallery;
             return (
             <View style={styles.container}>
              <View style={styles.centro}>
                 <ImageBackground
-                style={styles.image}
-                source={{uri: this.state.imageUri}}>
-                <View style={styles.centro}>
-                <Text style={styles.texto}>{gal.Nombre}</Text>
-                <Text style={styles.name_container}> {gal.Galeria}</Text>
-                <Text style={styles.texto2}>hasta el{gal.Cierre}</Text>
-                <TouchableOpacity 
-                activeOpacity = { .5 }
-                onPress={this.InfoScreen}
-                >
-                <Image style={{ width: 150, height: 50 }}
-      source={ require('../images/info2.svg')} />
-                </TouchableOpacity >
-                </View>
-                </ImageBackground>
+                    style={styles.image}
+                    source={{uri: this.state.imageUri}}>
+                    <View style={styles.centro}>
+                    <Text style={styles.texto}>{gal.Nombre}</Text>
+                    <Text style={styles.name_container}> {gal.Galeria}</Text>
+                    <Text style={styles.texto2}>hasta el {gal.Cierre}</Text>
+                    <TouchableOpacity 
+                        onPress={e => {
+                            this.props.onClickInfo(e,gal);
+                        }}>
+                        <Image style={{width: 100, height: 30}}
+                        source={require('../images/info2.png')}/>
+                    </TouchableOpacity>
+                    </View>
+                    </ImageBackground>
                 </View>
             </View> 
             );
         }
     }
-
 }
 
 const styles = StyleSheet.create({
+    bordered:{
+        borderRadius: 1,
+        padding : 5,
+        borderWidth: 1,
+        borderRadius:10,
+        borderColor: 'white'
+    },
+    info_button:{
+        color:'white',
+        fontSize: 12, 
+        fontFamily:'Avenir'
+    },
   container: {
     flex:1,
     backgroundColor:'rgba(0,0,0,.8)',
