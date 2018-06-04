@@ -77,19 +77,19 @@ const styles = StyleSheet.create({
   name_container:{
     color:'black',
     fontWeight:'bold',
-    fontFamily:'Avenir-Black',
+    //fontFamily:'Avenir',
     fontSize: 14
   },
   texto:{
     color:'black',
     fontSize: 17, 
     
-    fontFamily:'Avenir'
+    //fontFamily:'Avenir'
   },
   texto2:{
     color:'black',
     fontSize: 12, 
-    fontFamily:'Avenir'
+    //fontFamily:'Avenir'
   },
   centro:{
       flex: 1,

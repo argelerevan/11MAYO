@@ -7,6 +7,9 @@ const config = {
     storageBucket: "indexapp-6d191.appspot.com",
     messagingSenderId: "121394248384"
 };
+
+
+
 let firebaseApp = firebase.initializeApp(config);
 export const provider = new firebase.auth.GoogleAuthProvider();
 export const fbProvider = new firebase.auth.FacebookAuthProvider();

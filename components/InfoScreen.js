@@ -27,6 +27,8 @@ class InfoScreen extends Component{
             return <View></View>;
         }else{
             let gal = this.props.gallery; 
+            let uriCoordenadas = 'https://www.google.com/maps/';
+            uriCoordenadas = uriCoordenadas+'@'+gal.Latitud+','+gal.Longitud;
         return(
             <ScrollView style={styles.ScrollView}>
             <View style={styles.container}>
@@ -40,7 +42,7 @@ class InfoScreen extends Component{
                                       <Text style={styles.textoimagen2}>{gal.Galeria}</Text>
 
                                       <View style={styles.logos}>
-                                      <TouchableOpacity onPress={() => Linking.openURL('https://www.google.com.mx/maps.com')}>
+                                      <TouchableOpacity onPress={() => Linking.openURL(uriCoordenadas)}>
                     <Ionicons name="md-pin" size={28} color="white"/>
                     </TouchableOpacity>            
                     <TouchableOpacity onPress={() => Linking.openURL('indexgalerias.com')}>
@@ -63,10 +65,10 @@ class InfoScreen extends Component{
 
 <View style={{width:300, flexDirection: 'row',justifyContent: 'space-around' }}>
 
-<TouchableOpacity onPress={() => Linking.openURL('https://facebook.com')}>
+<TouchableOpacity onPress={() => Linking.openURL(gal.Facebook)}>
                     <Ionicons name="logo-facebook" size={27} color="black"/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => Linking.openURL('https://instagram.com')}>
+                    <TouchableOpacity onPress={() => Linking.openURL(gal.Instagram)}>
                     <Ionicons name="logo-instagram" size={27} color="black"/></TouchableOpacity>
 
                     </View>

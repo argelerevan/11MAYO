@@ -20,8 +20,7 @@ console.warn = message => {
 
 const TabApp = TabNavigator ({
   welcome: { screen: Login },
-  Main:{
-    screen: TabNavigator({
+  auth : { screen: AuthScreen},
     Expos: { 
     screen: Expos, 
     navigationOptions:({navigation}) =>({
@@ -34,7 +33,9 @@ const TabApp = TabNavigator ({
                 source={image}
                 style= {{ width: 30, height: 30 }}
             />
-        )}})},
+        )  
+      }
+    })},
   Eventos:{ 
     screen: Eventos, 
     navigationOptions:({navigation}) => ({
@@ -46,8 +47,12 @@ const TabApp = TabNavigator ({
             <Image 
                 source={image}
                 style= {{ width: 30, height: 30 }}
-            />)}})}
-          })}},
+            />
+        )  
+      }
+    })
+  }
+},
 
 {
 tabBarOptions:{
