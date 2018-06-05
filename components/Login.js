@@ -36,12 +36,16 @@ onButtonPress(){
   this.setState({ error: '', loading: true });
 
   firebase.auth().signInWithEmailAndPassword(email, password)
-  
-  .then(this.onLoginSuccess.bind(this))
-  .catch(() => {
-    firebase.auth().createUserWithEmailAndPassword(email,password)
+  .then(res=>{
+    console.log('Correcto');
+    this.props.navigation ('Expos');
+  })
+  .catch((e) => {
+    console.log(e);
+    console.log('Login fallido');
+    /*firebase.auth().createUserWithEmailAndPassword(email,password)
     .then(this.onLoginSuccess.bind(this))
-    .catch(this.onLoginFail.bind(this));
+    .catch(this.onLoginFail.bind(this));*/
   });
 }
 
@@ -72,8 +76,8 @@ return <Spinner size="small" />
   return (
     <TouchableOpacity  
     style={styles.button}
-    onPress={this.onButtonPress.bind(this)}
-    > <Text style={styles.buttonText}>INICIAR SESIÓN</Text>
+    onPress={this.onButtonPress.bind(this)}>
+      <Text style={styles.buttonText}>INICIAR SESIÓN</Text>
    </TouchableOpacity>
   );
 }
@@ -81,71 +85,57 @@ return <Spinner size="small" />
     return (
       
   <ImageBackground style={styles.container} source={require('../images/GRADIENT.png')}>
- 
-              
-                                <View style={styles.containerdos}>
-                                <Image source={require('../images/indexlogo.svg')} 
-                                style={styles.size}></Image>
-                                <View style={styles.sepa}>
-                                <CardSection>
-                                <Ionicons name="ios-person"
-                                 size={25} 
-                                 color="gray"
-                                 style={{marginLeft: 15 , 
-                                  marginTop: 7
-                                }}
-                                 /> 
-                                  <Input 
-                                  placeholder="user@gmail.com"
-                                  label = "Email"
-                                  value={this.state.email}
-                                  onChangeText={email => this.setState({ email })}
-                                >
-
-                                </Input>
-                                               </CardSection>
-                                               <CardSection>
-
-                                               <Ionicons name="md-lock" 
-                                               size={20} 
-                                               color="gray"
-                                               style={{
-                                                 marginLeft: 15,
-                                                marginTop: 10
-                                                }}
-                                            />
-<Input
-                                  secureTextEntry
-                                  placeholder="password"
-                                  label="Password"
-                                  value={this.state.password}
-                                  onChangeText={password => this.setState({ password })}
-
-/>
-                                          
-                                                 </CardSection>
-                                  </View>
-                                  </View>
-
+    <View style={styles.containerdos}>
+    <Image source={require('../images/indexlogo.svg')} 
+      style={styles.size}></Image>
+      <View style={styles.sepa}>
+          <CardSection>
+            <Ionicons name="ios-person"
+              size={25} 
+              color="gray"
+              style={
+                {marginLeft:15, 
+                marginTop: 7
+              }}/> 
+              <Input 
+                placeholder="user@gmail.com"
+                label = "Email"
+                value={this.state.email}
+                onChangeText={email => this.setState({ email })}>
+            </Input>
+          </CardSection>
+          <CardSection>
+            <Ionicons name="md-lock" 
+              size={20} 
+              color="gray"
+              style={{
+                marginLeft: 15,
+                marginTop: 10
+              }}/>
+          <Input
+            secureTextEntry
+            placeholder="password"
+            label="Password"
+            value={this.state.password}
+            onChangeText={password => this.setState({ password })}/>
+          </CardSection>
+        </View>
+      </View>
    <View>
      {this.renderButton()}
-     </View>
-
-
+    </View>
    <TouchableOpacity 
-   style={styles.button}
-onPress={() => this.login()}   >
-     <Text style={styles.buttonText}>
-                <MaterialCommunityIcons name="facebook" size={15} color="white"/>  INGRESAR CON FACEBOOK</Text>
-   </TouchableOpacity>
-   
-   
+      style={styles.button}
+      onPress={() => this.login()}>
+    <Text style={styles.buttonText}>
+      <MaterialCommunityIcons name="facebook" size={15} color="white"/>INGRESAR CON FACEBOOK</Text>
+    </TouchableOpacity>
    <TouchableOpacity style={styles.button}>
      <Text style={styles.buttonText}>
-                <MaterialCommunityIcons name="gmail" size={15} color="white"/>INGRESAR CON GOOGLE</Text>
+        <MaterialCommunityIcons name="gmail" size={15} color="white"/>INGRESAR CON GOOGLE</Text>
    </TouchableOpacity>
-   <Text style={styles.errorTextStyle}>  {this.state.error}   </Text>
-    </ImageBackground>
+    <Text style={styles.errorTextStyle}>{this.state.error}</Text>
+  </ImageBackground>
     );
   }
 }

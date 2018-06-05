@@ -21,7 +21,7 @@ export default class GalleryList extends React.Component {
     }
 
     componentDidMount(){
-        let galleriesRef = database.ref('messages');
+        let galleriesRef = database.ref('messages').orderByChild('Apertura');
         let galeries = [];   
         galleriesRef.on('value', function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
