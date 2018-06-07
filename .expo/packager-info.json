@@ -1,8 +1,8 @@
 {
-  "expoServerPort": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
-  "packagerPort": null,
-  "packagerPid": null
+  "expoServerPort": 19000,
+  "expoServerNgrokUrl": "https://bu-7g2.arevan.11mayo.exp.direct",
+  "packagerNgrokUrl": "https://packager.bu-7g2.arevan.11mayo.exp.direct",
+  "ngrokPid": 1948,
+  "packagerPort": 19001,
+  "packagerPid": 1926
 }

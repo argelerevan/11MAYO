@@ -8,7 +8,6 @@ import { TabNavigator, StackNavigator, TabView, TabBarBottom } from 'react-navig
 import Image from 'react-native-remote-svg'
 import InfoScreen from './components/InfoScreen';
 import AuthScreen from './components/AuthScreen';
-
 YellowBox.ignoreWarnings(['Setting a timer']);
 const _console = _.clone(console);
 console.warn = message => {
@@ -16,8 +15,6 @@ console.warn = message => {
     _console.warn(message);
   }
 };
-
-
 const TabApp = TabNavigator ({
   welcome: { screen: Login },
   Main:{
