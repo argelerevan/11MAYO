@@ -21,15 +21,19 @@ export default class GalleryList extends React.Component {
     }
 
     componentDidMount(){
-        let galleriesRef = database.ref('messages');
+        
+        let galleriesRef = database.ref('messages').orderByChild('created');
         let galeries = [];   
         galleriesRef.on('value', function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
+
                 var gallery = childSnapshot.val();
                 gallery.id = childSnapshot.key;
                 galeries.push(gallery);
             
-            });
+            }); 
+            galeries.reverse();
+            
             this.setState({
                 galeries:galeries
             

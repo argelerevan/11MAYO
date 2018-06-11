@@ -27,9 +27,10 @@ class InfoScreen extends Component{
             return <View></View>;
         }else{
             let gal = this.props.gallery; 
-            let uriCoordenadas = 'https://www.google.com/maps/';
-            uriCoordenadas = uriCoordenadas+'@'+gal.Latitud+','+gal.Longitud;
+let uriCoordenadas = 'http://maps.google.com/maps?&z=15&mrt=search&t=k&q={gal.lat}+{gal.lng}';
+            uriCoordenadas = uriCoordenadas+'@'+gal.lat+','+gal.lng;
         return(
+
             <ScrollView style={styles.ScrollView}>
             <View style={styles.container}>
                             <ImageBackground
